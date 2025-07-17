@@ -20,11 +20,20 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+
+    public function messagesSent() {
+        return $this->hasMany(Message::class, 'from_id');
+    }
+
+    public function messagesReceived() {
+        return $this->hasMany(Message::class, 'to_id');
+    }
+
+    public function contacts() {
+        return $this->belongsToMany(User::class, 'contacts', 'user_id', 'contact_id');
+    }
+
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.
