@@ -14,8 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        $middleware->append(HandleCors::class); // enables CORS
-        $middleware->prependToGroup('api', EnsureFrontendRequestsAreStateful::class);
+        $middleware->append(HandleCors::class);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

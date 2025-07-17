@@ -47,13 +47,14 @@ class AuthController extends Controller
             ]);
 
         }
-        $token = $user->createToken('apitoken')->plainTextToken;
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'user' => $user,
             'token' => $token,
         ], 200);
     }
+
     public function me(Request $request)
     {
         return response()->json($request->user());
